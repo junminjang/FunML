@@ -106,7 +106,7 @@ let rec eval : exp -> env -> mem -> value * mem =
       let v, mem1 = eval e1 env mem in
       match v with
       | Bool true -> eval e2 env mem1
-      | Bool false -> eval e2 env mem1
+      | Bool false -> eval e3 env mem1
       | _ -> raise (Failure "Type error"))
   | LET (x, e1, e2) ->
       let v1, mem1 = eval e1 env mem in
@@ -182,7 +182,7 @@ let rec eval : exp -> env -> mem -> value * mem =
             (extend_env
                (f, RecProcedure (f, x, e, env'))
                (extend_env (x, v2) env'))
-            mem
+            mem2
       | MRecProcedure (f, x, ef, g, y, eg, env') ->
           eval ef
             (extend_env
@@ -190,7 +190,7 @@ let rec eval : exp -> env -> mem -> value * mem =
                (extend_env
                   (g, MRecProcedure (g, y, eg, f, x, ef, env'))
                   (extend_env (x, v2) env')))
-            mem
+            mem2
       | _ -> raise (Failure "Type error"))
   | LETMREC ((f, x, ef), (g, y, eg), e2) ->
       (* closures *)
