@@ -1,4 +1,7 @@
-(* explicit reference language *)
+(* functional programming language like ocaml
+   supports explicit memoery allocation features
+   So, this language implementation includes NEWREF, DEREF, SETREF expression
+*)
 type exp =
   | UNIT
   | TRUE

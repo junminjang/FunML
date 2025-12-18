@@ -1,4 +1,8 @@
-(* C style imperative language + garbage collection *)
+(* This language implementation
+   supports 'call by reference'
+   and garbage collection. Before every evaluation,
+   garbage collection executed so that unreachable memory location
+   will be deleted in mem list *)
 type exp =
   | UNIT
   | TRUE
